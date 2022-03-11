@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/base/kid.png">
+  <link rel="icon" href="/img/base/kid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Life is a beautiful story">
+  <meta name="author" content="waitingFor">
+  <meta name="keywords" content="">
+  <meta name="description" content="信奥传奇——杜瑜皓他从小开始学习信息学，从初中到高中几起几落、经历坎坷终得回报。他曾因为 NOI 金牌入选国家集训队保送清华，在 IOI 2015 中代表中国队出战拿下金牌，大学期间拿下 CCPC 全国总冠军、 Facebook Hacker Cup 全球亚军、ACM-ICPC 2017 全球总决赛第六名、Topcoder TCO17 全球总冠军。他就是我们今天信奥传奇的主人公——杜瑜皓。 从小学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信奥传奇——杜瑜皓">
+<meta property="og:url" content="http://example.com/2022/02/16/Examples/%E4%BF%A1%E5%A5%A5%E4%BC%A0%E5%A5%87%E2%80%94%E2%80%94%E6%9D%9C%E7%91%9C%E7%9A%93/index.html">
+<meta property="og:site_name" content="waitingFor&#39;s blog">
+<meta property="og:description" content="信奥传奇——杜瑜皓他从小开始学习信息学，从初中到高中几起几落、经历坎坷终得回报。他曾因为 NOI 金牌入选国家集训队保送清华，在 IOI 2015 中代表中国队出战拿下金牌，大学期间拿下 CCPC 全国总冠军、 Facebook Hacker Cup 全球亚军、ACM-ICPC 2017 全球总决赛第六名、Topcoder TCO17 全球总冠军。他就是我们今天信奥传奇的主人公——杜瑜皓。 从小学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180510/b083016639f840e7a3ec62894e022d9a.webp">
+<meta property="og:image" content="https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180510/0c8ffb9350f8442b902774b6094e38c3.webp">
+<meta property="og:image" content="https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180510/e25ea5995113477da568e05a9c152c8b.webp">
+<meta property="article:published_time" content="2022-02-16T15:25:04.000Z">
+<meta property="article:modified_time" content="2022-03-01T10:05:12.634Z">
+<meta property="article:author" content="waitingFor">
+<meta property="article:tag" content="example">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180510/b083016639f840e7a3ec62894e022d9a.webp">
+  
+  <title>信奥传奇——杜瑜皓 - waitingFor&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/base/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hansen&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/base/jue.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="信奥传奇——杜瑜皓">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      waitingFor
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-16 23:25" pubdate>
+        2022年2月16日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">信奥传奇——杜瑜皓</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：10 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="信奥传奇——杜瑜皓"><a href="#信奥传奇——杜瑜皓" class="headerlink" title="信奥传奇——杜瑜皓"></a>信奥传奇——杜瑜皓</h1><p>他从小开始学习信息学，从初中到高中几起几落、经历坎坷终得回报。他曾因为 NOI 金牌入选国家集训队保送清华，在 IOI 2015 中代表中国队出战拿下金牌，大学期间拿下 CCPC 全国总冠军、 Facebook Hacker Cup 全球亚军、ACM-ICPC 2017 全球总决赛第六名、Topcoder TCO17 全球总冠军。他就是我们今天信奥传奇的主人公——杜瑜皓。</p>
+<p><strong>从小学习信息学 初二全国赛夺银</strong></p>
+<p>小学时候的杜瑜皓是一个对数学非常感兴趣的孩子，当很多还在纠结四则运算的时候，在父亲的引导下，杜瑜皓已经提前学习了很多中学甚至是大学的数学内容。</p>
+<p>小学四年级时，当时只有 10 岁的杜瑜皓报名了学校举办的程序设计辅导班。在这个班上，杜瑜皓认识了很多和他类似、对数学很感兴趣的孩子们，和一群志同道合的人一起学习编程、学习信息学给了当时的他一种归属感。自此开始，杜瑜皓就迷上了信息学，走上了一条“神奇的道路”。</p>
+<p>进入初中后，2009 年杜瑜皓在 NOIP 普及组中就已经获得了不错的成绩，在省内的选手中凸显了出来。2010 年时，刚上初二的杜瑜皓开始在 NOIP 提高组中崭露头角，以 340 分的成绩成为了当年浙江省 NOIP 提高组一等奖中年龄最小的获奖选手。</p>
+<p>次年，经过省队选拔考试，杜瑜皓顺利进入了浙江省省队。代表浙江出战全国赛 NOI 2011 的杜瑜皓获得了一块银牌。在杜瑜皓眼中，他依然觉得自己当时“发挥得不太好”。</p>
+<p>不过，这次初中阶段的 NOI 的经历让杜瑜皓认识了很多优秀的选手，特别是一些已经保送清华的学长。看到这些优秀的人，杜瑜皓当时就坚定了自己将来有一天去清华学习的信念。</p>
+<p><strong>挫败后拿到清华一本线录取：还继续竞赛吗？</strong></p>
+<p>从初二开始，杜瑜皓已经成长成了一个“一等奖专业户”，每年到时间拿下 NOIP 提高组一等奖已经成了一个习惯性动作。在 NOI 2011 获得银牌、NOI 2012 获得银牌并入选国家集训队（备注：当时国家集训队为 60 人，含部分银牌选手）。</p>
+<p>很多进入国家集训队的竞赛选手会选择停课专心训练，但是杜瑜皓不想这么做。高中进入镇海中学之后，杜瑜皓选择每天晚自习和周末的时间用来完成国家集训队的作业。</p>
+<p>高一时，照常拿下提高组一等奖的杜瑜皓却突然发挥失常，没能进入省队，失去了 NOI 2013 的正式选手资格。在后来的冬令营比赛中，因为一个微小的失误，已经入选国家集训队的他又与国家队失之交臂。</p>
+<p>杜瑜皓当时曾总结——“那段时间自己不知道怎么了，总是连连失误，可能是之前太顺利了，就自我膨胀了。”</p>
+<p>在 NOI 2013 的赛场上，杜瑜皓作为邀请赛选手参赛，获得 519 分的高分。虽然因为没有前一年的 NOIP 一等奖成绩而导致不能直接保送，但依然获得了清华大学“高考一本线录取资格”。</p>
+<p>在包括学校老师和杜瑜皓父母在内的在很多人看来，获得清华大学“高考一本线录取资格”应该就很好了。父母期待他接下来应该稳重一些，准备高考，均衡发展，两边兼顾。学校也希望他能好好补上落下的文化课，并希冀他参加高考搏一搏状元的位置。</p>
+<p>但杜瑜皓太爱信息学了，他心中还是想要继续参加竞赛，希望自己在哪里摔倒就还在哪里爬起来，在竞赛中继续证明和超越自己。</p>
+<p>可是，他也知道孤注一掷风险很大——没时间顾及文化课可能导致自己最终高考用不上清华大学“高考一本线录取资格”；而通过竞赛取得保送资格又只剩下高二这一次机会了。</p>
+<p>最终，杜瑜皓选择了“脚踏两条船”，在白天学习文化课，在晚上晚自习的时间抽空去机房练习信息学竞赛。然而，高二的期中考试中，杜瑜皓的成绩一下从前几下滑到了四十多名，班主任老师赶忙找他谈话，希望他不再去机房做题了。</p>
+<p>虽然知道老师是为他好，但是杜瑜皓实在不甘心，因为从小学四年级到现在，信息学竞赛已经成为他生活的一部分。为此，他决定压缩自己的睡眠时间，每天白天和晚自习都放在文化课上，晚上回到出租屋后少睡两小时做题、保持竞技状态。努力终有回报，期末时，杜瑜皓的成绩重新回到了年级第三的位置。</p>
+<p><strong>认真地爱信息学 努力一搏为国争光</strong></p>
+<p>高一期间竞赛场上接连的失误让杜瑜皓有一些发慌，他此前积累的所有先发优势一下子荡然无存，想全国夺金取得保送资格就只剩下高二这一次机会了。高二开学后不久的 NOIP 提高组比赛上，杜瑜皓稳定发挥，考出了一个不错的成绩，并在之后通过省选重回省队。</p>
+<p>再度代表浙江出战 NOI 的杜瑜皓心中很清楚——想拿全国金牌只有最后一次机会了。他考试前很是紧张，还犯了急性肠胃炎。在被采访时他曾介绍：“我上吐下泻的，挂盐水到了夜里十点多，睡觉睡不沉稳，做着奇怪的噩梦，我实在没想到会遇到这种情况，以这种方式来完成自己的最后一次比赛，真是感觉到了命运弄人。”</p>
+<p>老天还是眷顾杜瑜皓的，虽然临场状态不佳，但他却拿下了全场第二名的好成绩获得了他梦寐以求的 NOI 金牌，再度进入国家集训队并获得保送资格。</p>
+<p>高三的时候，通过层层选拔，杜瑜皓成为了国家队四位成员之一并代表中国出战在哈萨克斯坦阿拉木图举办的 IOI 2015 第 27 届国际信息学竞赛。杜瑜皓最终取得全球第四名的成绩并获得金牌。</p>
+<p><img src="https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180510/b083016639f840e7a3ec62894e022d9a.webp" srcset="/img/base/loading.gif" lazyload alt="img"></p>
+<p>代表中国队出战 IOI 2015 的杜瑜皓（右三）</p>
+<p>获奖后的杜瑜皓并不满足：“很想为祖国荣誉而战，拿个第一回来争光，但结果还是有些遗憾。我在考场上甚至怀疑会呕吐然后不能继续进行比赛。尽管最后的结果不算差，但和我预期的差了很多。正如领队老师们所说的，适应环境的能力也是个人能力的一环。有的时候总感觉艺术作品以悲剧结局或者不那么完美更有美感，但是在自己身上，还是不能去坦然地欣赏了。</p>
+<p><strong>在清华：竞赛不能停，生活更有趣</strong></p>
+<p>竞赛，竞赛，竞赛，杜瑜皓的生活中几乎全是竞赛。他自己也曾经无数次思考，这样的选择到底值不值得。</p>
+<p>“还是有一点点后悔的，不光是最后一次 OI 的比赛成绩不如自己的设想，主要还是因为一直过分专注于竞赛，而错过了去体会生活本来的滋味和颜色”。</p>
+<p>进入清华后，杜瑜皓让自己的生活中也增加了一些闲暇的部分：“春和日丽，去水木清华的荷塘一带散散步就是一大乐事，尤其是夜里，想象着朱自清，清风徐徐，让人身心愉悦，能忘掉很多不开心的事情。”</p>
+<p>但是，让自己多一些空闲时间并不意味着放弃奋斗。在清华，杜瑜皓还希望更多地去挑战，尽自己所能去开拓、去发现新的可能性和新的生活的颜色。</p>
+<p>保送入清华大学计算机系以后，杜瑜皓又经过二次招生进入中国当时唯一的计算机科学实验班——姚班。在姚班课程很多，即使高中时成绩很不错的杜瑜皓也并没有觉得很自由轻松。</p>
+<p><img src="https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180510/0c8ffb9350f8442b902774b6094e38c3.webp" srcset="/img/base/loading.gif" lazyload alt="img"></p>
+<p>代表清华出战 ACM-ICPC 2017 的杜瑜皓（左二）</p>
+<p>清华的氛围大大的帮助了他，让他感觉很好：“清华的同学们各自都很有很强的知识背景，所以讨论起来非常热烈、非常深入，既能产生共鸣，又能获得新的启发。”</p>
+<p>虽然只是本科生，杜瑜皓选修了一门开给研究生的算法设计课程，难度很大，但坚持下来让他非常有成就感。“甚至比拿金牌的感觉好多了呢，应该是目前我最喜欢的一门课程。”</p>
+<p>同时，杜瑜皓也还在自己喜欢的竞赛道路上奔跑着，和同学组队参加 ACM-ICPC、CCPC 的竞赛，去 Facebook Hacker Cup、计蒜之道、Topcoder TCO 等比赛刷奖。拿下了 CCPC 全国总冠军、 Facebook Hacker Cup 全球亚军、ACM-ICPC 2017 全球总决赛第六名、Topcoder TCO17 算法组全球总冠军等好成绩。</p>
+<p><img src="https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180510/e25ea5995113477da568e05a9c152c8b.webp" srcset="/img/base/loading.gif" lazyload alt="img"></p>
+<p>Facebook Hacker Cup 亚军的杜瑜皓（左三）</p>
+<p>杜瑜皓说自己一直很喜欢“我命由我不由天”这句话，“虽然看上去很中二，但年轻人，怎么可以没有一点锐气。”他希望自己能通过努力逃离世界线的收束，争取将来少留些遗憾。</p>
+<p><strong>结语</strong></p>
+<p>现在，杜瑜皓一面在努力学习，一方面也在积极地拥抱未来。学业之余，杜瑜皓还加入了人工智能领军企业小马智行（Pony.ai）实习，参与无人车相关算法的研究。</p>
+<p>或许，不久之后，杜瑜皓将不再把太多时间投入在比赛上，而为人类带去更多的有价值的贡献。就如他自己在高中毕业时所写——“无论如何，这一切都已经过去了。算法竞赛都不将是我人生的主要部分。”</p>
+<blockquote>
+<p>年轻人，不能没有锐气，而那些榜样的位置，就是我们向往的地方，追逐、超越他们，是永恒的动力之源，从初中到高中再到大学，到往后，亦是如此。</p>
+</blockquote>
+<p>文章转自<a target="_blank" rel="noopener" href="https://m.sohu.com/a/231138618_797912">https://m.sohu.com/a/231138618_797912</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Examples/">Examples</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/example/">example</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">waitingFor</a> <br>
+                <strong>本文链接: </strong><a href="http://example.com/2022/02/16/Examples/%E4%BF%A1%E5%A5%A5%E4%BC%A0%E5%A5%87%E2%80%94%E2%80%94%E6%9D%9C%E7%91%9C%E7%9A%93/">http://example.com/2022/02/16/Examples/%E4%BF%A1%E5%A5%A5%E4%BC%A0%E5%A5%87%E2%80%94%E2%80%94%E6%9D%9C%E7%91%9C%E7%9A%93/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+                   
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/28/Project/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%90%83%E8%9B%87/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go语言实现贪吃蛇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/12/toMe/system/">
+                        <span class="hidden-mobile">system</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"1UYsABHdiuhPew7DyayMy0MN-MdYXbMMI","appKey":"3WTCvdyigvgo4b4mooFzutuE","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://1uysabhd.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     &copy; <a href="https://github.com/huansong-dev" target="_blank" rel="nofollow noopener"><span>waitingFor</span></a> 2021-2022 <br> Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('07/12/2021 0:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已各种夹缝中安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

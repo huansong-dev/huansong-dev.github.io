@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/base/kid.png">
+  <link rel="icon" href="/img/base/kid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Life is a beautiful story">
+  <meta name="author" content="waitingFor">
+  <meta name="keywords" content="">
+  <meta name="description" content="摘要：贪吃蛇是我们从小玩到大的小游戏，本次实训以此为载体，将Go语言的基本语法与使用规范进行展示。同时在报告中也会对Go语言的独有特性进行介绍。  一.项目分析 (一)贪吃蛇玩法： 在一定区域内通过上下左右方向键控制蛇的方向，寻找食物，吃到食物后获得积分，并且蛇的身子变长，蛇不能碰墙与自己的身体。 (二)项目模块分析： 1.蛇模块 Ø 初始化蛇（出生） Ø 蛇移动 Ø 碰撞食物，长度改变 Ø 碰">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言实现贪吃蛇">
+<meta property="og:url" content="http://example.com/2022/02/28/Project/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%90%83%E8%9B%87/index.html">
+<meta property="og:site_name" content="waitingFor&#39;s blog">
+<meta property="og:description" content="摘要：贪吃蛇是我们从小玩到大的小游戏，本次实训以此为载体，将Go语言的基本语法与使用规范进行展示。同时在报告中也会对Go语言的独有特性进行介绍。  一.项目分析 (一)贪吃蛇玩法： 在一定区域内通过上下左右方向键控制蛇的方向，寻找食物，吃到食物后获得积分，并且蛇的身子变长，蛇不能碰墙与自己的身体。 (二)项目模块分析： 1.蛇模块 Ø 初始化蛇（出生） Ø 蛇移动 Ø 碰撞食物，长度改变 Ø 碰">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-28T12:43:57.000Z">
+<meta property="article:modified_time" content="2022-02-28T14:58:42.162Z">
+<meta property="article:author" content="waitingFor">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Go语言实现贪吃蛇 - waitingFor&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/base/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hansen&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/base/jue.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Go语言实现贪吃蛇">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      waitingFor
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-28 20:43" pubdate>
+        2022年2月28日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Go语言实现贪吃蛇</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：11 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <blockquote>
+<p>摘要：贪吃蛇是我们从小玩到大的小游戏，本次实训以此为载体，将Go语言的基本语法与使用规范进行展示。同时在报告中也会对Go语言的独有特性进行介绍。</p>
+</blockquote>
+<p><strong>一.项目分析</strong></p>
+<p>(一)贪吃蛇玩法：</p>
+<p>在一定区域内通过上下左右方向键控制蛇的方向，寻找食物，吃到食物后获得积分，并且蛇的身子变长，蛇不能碰墙与自己的身体。</p>
+<p>(二)项目模块分析：</p>
+<p>1.蛇模块</p>
+<p>Ø 初始化蛇（出生）</p>
+<p>Ø 蛇移动</p>
+<p>Ø 碰撞食物，长度改变</p>
+<p>Ø 碰撞墙或自己，蛇死亡</p>
+<p>2.食物模块</p>
+<p>Ø 食物产生</p>
+<p>Ø 食物消失</p>
+<p>3.游戏控制</p>
+<p>Ø 控制键盘输入</p>
+<p>Ø 游戏流程</p>
+<p>4.游戏显示</p>
+<p>Ø 游戏地图显示</p>
+<p><strong>（三）流程初定</strong></p>
+<p>基于以上的项目模块分析，我们可以初步确定项目实现的基本流程，在之后的每一步再不断优化下一步的处理。具体的流程如下：构建地图、食物类、蛇类 -&gt; 图形显示器 -&gt; 初始化地图信息 -&gt; 初始化蛇信息 -&gt; 设计食物随机产生器-&gt; 设计游戏逻辑 -&gt; 设计主程序。</p>
+<p><strong>二.项目的实现</strong></p>
+<p>文件结构：</p>
+<p>$GOPATH: src\she.go</p>
+<p>$GOROOT: src\Clib\Clib.go</p>
+<p><strong>（一）地图、蛇类、食物类的构造</strong></p>
+<p>1.地图设置</p>
+<p>  作为一个合理的贪吃蛇游戏，同时考虑我们的贪吃蛇小游戏是在命令行中实现的。因此我们考虑全局声明地图的长和高，且将它们初始化为20。这样我们就可以在main包中的任意位置合理地调用它们。</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go">Package main<br>Import … <br><span class="hljs-keyword">const</span> WIDE <span class="hljs-keyword">int</span> = <span class="hljs-number">20</span>  <span class="hljs-comment">// 设置布局</span><br><span class="hljs-keyword">const</span> HIGH <span class="hljs-keyword">int</span> = <span class="hljs-number">20</span><br></code></pre></div></td></tr></table></figure>
+
+<p>2.蛇类与食物类设置</p>
+<p>  作为一款贪吃蛇小游戏，主角当然是我们的小蛇。小蛇有它的长度size，有运动方向dir（小蛇是有头有尾的）。那么，要将小蛇的长度与方向这两个外部显示属性进行修改并显示，就需要引入一个能够对小蛇位置进行控制的数据结构——数组。这个数组中存放着小蛇每一节的位置坐标，考虑到小蛇的运动自由性，我们可以将数组的容量设置为地图的大小即20*20 = 400。</p>
+<p>作为贪吃蛇小游戏的次角——食物就没有那么多的信息，不过在后期可以对它的ui进行一个美化。</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Snake <span class="hljs-keyword">struct</span>&#123;<br>    size <span class="hljs-keyword">int</span><br>    dir <span class="hljs-keyword">byte</span><br>    pos [WIDE*HIGH]Position<br>&#125;<br><br><span class="hljs-keyword">type</span> Food <span class="hljs-keyword">struct</span>&#123;<br>    Position<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p><strong>（二）设计图形显示器</strong></p>
+<p>  定义好以上静态信息，如果不对它们进行外部显示，便失去了意义。考虑到我们最终设计出来的小蛇与食物的位置是在不断变化的，但每一次变化的位置可以用光标来控制，因此我们考虑用cgo即c与go语言进行混合编程来实现这一功能，因为c语言标准库中有简单的函数来实现命令行光标的移动。我们要做的仅仅是做一个接口，使得在Go中也能调用的这些c函数。</p>
+<p>  首先，我们需要自行构建一个包，在这里我们命名为Clib。在GoRoot目录的src文件下新建一个文件夹并命名为Clib，然后在它的内部创建一个Go文件，写入以下信息：</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">package</span> Clib<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">#include &lt;windows.h&gt;</span><br><span class="hljs-comment">#include &lt;conio.h&gt;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">// 使用了WinAPI来移动控制台的光标</span><br><span class="hljs-comment">void gotoxy(int x, int y)</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    COORD c;</span><br><span class="hljs-comment">    c.X = x, c.Y = y;</span><br><span class="hljs-comment">    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">// 从键盘获取一次按键，但不显示到控制台</span><br><span class="hljs-comment">int direct()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    return _getch();</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment">//去掉控制台光标</span><br><span class="hljs-comment">void hideCursor()</span><br><span class="hljs-comment">&#123;</span><br><span class="hljs-comment">    CONSOLE_CURSOR_INFO  cci;</span><br><span class="hljs-comment">    cci.bVisible = FALSE;</span><br><span class="hljs-comment">    cci.dwSize = sizeof(cci);</span><br><span class="hljs-comment">    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &amp;cci);</span><br><span class="hljs-comment">&#125;</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;C&quot;</span><br><span class="hljs-comment">//设置控制台光标位置</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">GotoPosition</span><span class="hljs-params">(X <span class="hljs-keyword">int</span>, Y <span class="hljs-keyword">int</span>)</span></span> &#123;<br>    <span class="hljs-comment">//调用C语言函数</span><br>    C.gotoxy(C.<span class="hljs-keyword">int</span>(X), C.<span class="hljs-keyword">int</span>(Y))  <span class="hljs-comment">// go类型转换</span><br>&#125;<br><span class="hljs-comment">//无显获取键盘输入的字符</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Direction</span><span class="hljs-params">()</span> <span class="hljs-params">(key <span class="hljs-keyword">int</span>)</span></span> &#123;<br>    key = <span class="hljs-keyword">int</span>(C.direct())<br>    <span class="hljs-keyword">return</span><br>&#125;<br><span class="hljs-comment">//设置控制台光标隐藏</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">HideCursor</span><span class="hljs-params">()</span></span> &#123;<br>    C.hideCursor()<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>注意包头要注明package Clib，之后在Clib文件夹中新建的Go文件也是如此，这类似于一个归属标识，不可缺少。</p>
+<p>/<em>与</em>/包裹的部分是C语言，也是Go中可以调用的函数的一个本源映射， 标准的头文件引入与函数定义都是需要的，与C中语法相同。一个要注意的点是import “C”与上面的C语言引用说明间是不能有空行的，否则在之后的主文件包调用中会报错；还有Go函数的名称一定要大写，这与后期调用有密切关系。通过以上两点我们可以看到Go语言对格式的高规范、高要求。</p>
+<p>设计好我们需要的包后，就需要在主文件中调用采用使用其中的函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;Clib&quot;</span><br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;math/rand&quot;</span><br>    <span class="hljs-string">&quot;os&quot;</span><br>    <span class="hljs-string">&quot;time&quot;</span><br>)<br><br></code></pre></div></td></tr></table></figure>
+
+<p>  回到正题，我们需要将命令行光标移动到蛇与食物的每个位置来设置它们的ui，因此我们在这里用的是用C设计的gotoxy函数与Go设计的GotoPosition函数。在主文件中，我们定义函数showUI，接口设置为目标（蛇或食物）的位置坐标与需要设置的ui图形。</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">ShowUI</span><span class="hljs-params">(X <span class="hljs-keyword">int</span>, Y <span class="hljs-keyword">int</span>, ui <span class="hljs-keyword">byte</span>)</span></span>&#123;<br>    <span class="hljs-comment">// 找到对应坐标点光标位置</span><br>    Clib.GotoPosition(X*<span class="hljs-number">2</span>+<span class="hljs-number">2</span>,Y+<span class="hljs-number">2</span>)  <span class="hljs-comment">// 避免蛇移动影响棋盘边界</span><br>    <span class="hljs-comment">// 绘制图形</span><br>    fmt.Fprintf(os.Stderr, <span class="hljs-string">&quot;%c&quot;</span>, ui)<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>(三)初始化地图信息</p>
+<p>  地图的初始化是简单的，我们仅需将一个方框打印出来，由于篇幅有限这里只做出来它的简化图：</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">MapInit</span><span class="hljs-params">()</span></span>&#123;<br>    fmt.Fprintln(os.Stderr,<span class="hljs-string">`</span><br><span class="hljs-string">    #------#</span><br><span class="hljs-string">    |       |</span><br><span class="hljs-string">    |       |</span><br><span class="hljs-string">    #------#</span><br><span class="hljs-string">    `</span>)<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>可以想象一下，实际上水平方向有40个“-”，竖直方向有20个“|”。</p>
+<p>这里采用了一个特殊函数Fprintln，对比ShowUI中的Fprintf，我们可以看到其中的相似与差别:</p>
+<table>
+<thead>
+<tr>
+<th>Fprintf</th>
+<th>Fprintf 根据 format 参数生成格式化的字符串并写入 w 。返回写入的字节数和遇到的任何错误。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fprintln</td>
+<td>Fprintln 采用默认格式将其参数格式化并写入 w 。总是会在相邻参数的输出之间添加空格并在输出结束后添加换行符。返回写入的字节数和遇到的任何错误。</td>
+</tr>
+</tbody></table>
+<p>**(**<strong>四)初始化蛇信息</strong></p>
+<p>1.初始化蛇的长度、方向与位置，并绘制初始形态</p>
+<p>  通常，贪吃蛇的开端是地图的中心，长度为2（包括一头一尾），并且头朝右，尾与头在一条水平面上，我们的游戏也是如此。</p>
+ <figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go">s.size = <span class="hljs-number">2</span>  <span class="hljs-comment">// 一头一尾</span><br>    s.dir = <span class="hljs-string">&#x27;R&#x27;</span>  <span class="hljs-comment">//初始化方向 用UDLR做上下左右</span><br>    s.pos[<span class="hljs-number">0</span>].X = WIDE/<span class="hljs-number">2</span><br>    s.pos[<span class="hljs-number">0</span>].Y = HIGH/<span class="hljs-number">2</span><br>    s.pos[<span class="hljs-number">1</span>].X = WIDE/<span class="hljs-number">2</span> - <span class="hljs-number">1</span><br>s.pos[<span class="hljs-number">1</span>].Y = HIGH/<span class="hljs-number">2</span><br><br><span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; s.size; i++&#123;<br>        <span class="hljs-keyword">var</span> ui <span class="hljs-keyword">byte</span><br>        <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span>&#123;<br>            ui = <span class="hljs-string">&#x27;@&#x27;</span><br>        &#125; <span class="hljs-keyword">else</span>&#123;<br>            ui = <span class="hljs-string">&#x27;*&#x27;</span><br>        &#125;<br>        ShowUI(s.pos[i].X, s.pos[i].Y, ui)<br>    &#125;<br><br></code></pre></div></td></tr></table></figure>
+
+<p>2.设置蛇方向的调整方式</p>
+<p>  考虑到玩家在游戏中唯一的操作就是不断改变蛇的移动方向，那么我们就需要建立按键与方向之间的联系。在本模块的设计中需要查找ASCII码与字符间的对应关系。“WSAD”是我们玩游戏时常用的按键，因此我们将它们与方向“上下左右”建立关系，但有时候用户可能会忽视它们的键盘大写设置，或者因外界因素导致某些键位损坏，因此我们也将”wsad”与”udrl”加入了设计。</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">for</span> &#123;<br>            <span class="hljs-keyword">switch</span> Clib.Direction() &#123;<br>            <span class="hljs-comment">//方向上  W|w|↑</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-number">83</span>, <span class="hljs-number">115</span>, <span class="hljs-number">80</span>:<br>                s.dir = <span class="hljs-string">&#x27;U&#x27;</span><br>                <span class="hljs-comment">//方向左</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-number">65</span>, <span class="hljs-number">97</span>, <span class="hljs-number">75</span>:<br>                s.dir = <span class="hljs-string">&#x27;L&#x27;</span><br>                <span class="hljs-comment">//方向右</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-number">100</span>, <span class="hljs-number">68</span>, <span class="hljs-number">77</span>:<br>                s.dir = <span class="hljs-string">&#x27;R&#x27;</span><br>                <span class="hljs-comment">//方向下</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-number">72</span>, <span class="hljs-number">87</span>, <span class="hljs-number">119</span>:<br>                s.dir = <span class="hljs-string">&#x27;D&#x27;</span><br>                <span class="hljs-comment">//暂停  空格键</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-number">32</span>:<br>                s.dir = <span class="hljs-string">&#x27;P&#x27;</span><br>            &#125;<br>        &#125;<br>    &#125;()  <span class="hljs-comment">// 特殊的独立函数</span><br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>这是一个特殊的函数，它独立于main，在程序运行过程中始终保持生效状态。</p>
+<p><strong>（五）设计食物随机产生器</strong></p>
+<p>   由于贪吃蛇中的食物是随机产生的，我们需要赋予食物的位置一个随机性。但Go的rand包在边界范围内产生的随机种子不是随机的，因此我们需要在main中加入混淆种子来实现随机性。</p>
+ <figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">RandomFood</span><span class="hljs-params">()</span></span>&#123;<br>    food.X = rand.Intn(WIDE)+<span class="hljs-number">1</span>  <span class="hljs-comment">// 直接写起不到随机的效果,这是go的一个缺点</span><br>    food.Y = rand.Intn(HIGH)+<span class="hljs-number">1</span><br>    ShowUI(food.X, food.Y, <span class="hljs-string">&#x27;s&#x27;</span>)<br>&#125;<br><br><span class="hljs-comment">// 设置一个随机种子，用作混淆</span><br>    rand.Seed(time.Now().UnixNano())<br><br></code></pre></div></td></tr></table></figure>
+
+<p>注意函数定义在main外，混淆种子定义在main内。</p>
+<p><strong>（六）设置游戏逻辑</strong></p>
+<p>  在游戏开始时，我们就可以对贪吃蛇的方向进行调整，我们在之前已经对键位与贪吃蛇移动方向进行了联系，接下来我们来实现它的动态效果：</p>
+ <figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-keyword">var</span> nx, ny <span class="hljs-keyword">int</span> = <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br><br><span class="hljs-keyword">switch</span> s.dir &#123;<br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;U&#x27;</span>:<br>            nx = <span class="hljs-number">0</span><br>            ny = <span class="hljs-number">1</span><br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;D&#x27;</span>:<br>            nx = <span class="hljs-number">0</span><br>            ny = <span class="hljs-number">-1</span><br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;L&#x27;</span>:<br>            nx = <span class="hljs-number">-1</span><br>            ny = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;R&#x27;</span>:<br>            nx = <span class="hljs-number">1</span><br>            ny = <span class="hljs-number">0</span><br>        &#125;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>这一部分包含在一个永真循环中，每一次循环，蛇的方向可能都不一样，不同的方向会对应蛇头的位移，紧接着链式反应到蛇身。</p>
+<p>众所周知，贪吃蛇有两种死亡方式，那就是头撞墙或撞到自己的身体，在这里我们可以用使用位置信息来进行判断：</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">// 蛇头和墙体碰撞判断</span><br>        <span class="hljs-keyword">if</span> s.pos[<span class="hljs-number">0</span>].X &lt; <span class="hljs-number">1</span> || s.pos[<span class="hljs-number">0</span>].Y &lt; <span class="hljs-number">1</span> || s.pos[<span class="hljs-number">0</span>].X &gt;= WIDE+<span class="hljs-number">1</span> || s.pos[<span class="hljs-number">0</span>].Y &gt;= HIGH+<span class="hljs-number">1</span>&#123;<br>            <span class="hljs-keyword">return</span><br>        &#125;<br>        <span class="hljs-comment">// 蛇头和身体判断</span><br>        <span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt; s.size; i++&#123;<br>            <span class="hljs-keyword">if</span> s.pos[<span class="hljs-number">0</span>].X == s.pos[i].X &amp;&amp; s.pos[<span class="hljs-number">0</span>].Y == s.pos[i].Y&#123;<br>                <span class="hljs-keyword">return</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 蛇跟食物判断</span><br>        <span class="hljs-keyword">if</span> s.pos[<span class="hljs-number">0</span>].X == food.X &amp;&amp; s.pos[<span class="hljs-number">0</span>].Y == food.Y&#123;<br>            <span class="hljs-comment">// 身体增长</span><br>            s.size++<br>            <span class="hljs-comment">// 刷新食物位置</span><br>            RandomFood()<br>            <span class="hljs-comment">// 分数变量</span><br>        &#125;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>在贪吃蛇世界中，有且仅会发生以上三种碰撞。当贪吃蛇吃到食物，它的各项属性会发生相应的变化：</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-comment">//获取蛇尾坐标,在之后隐去蛇尾</span><br>        wx := s.pos[s.size<span class="hljs-number">-1</span>].X<br>        wy := s.pos[s.size<span class="hljs-number">-1</span>].Y<br><br>        <span class="hljs-comment">// 从尾部开始更新蛇的身体坐标</span><br>        <span class="hljs-keyword">for</span> i := s.size<span class="hljs-number">-1</span>; i &gt; <span class="hljs-number">0</span>; i-- &#123;<br>            s.pos[i].X = s.pos[i<span class="hljs-number">-1</span>].X<br>            s.pos[i].Y = s.pos[i<span class="hljs-number">-1</span>].Y<br>        &#125;<br><br>        <span class="hljs-comment">// 更新蛇头坐标</span><br>        s.pos[<span class="hljs-number">0</span>].X += nx<br>        s.pos[<span class="hljs-number">0</span>].Y += ny<br><br>        <span class="hljs-comment">//绘制蛇</span><br>        <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; s.size; i++&#123;<br>            <span class="hljs-keyword">var</span> ui <span class="hljs-keyword">byte</span><br>            <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span>&#123;<br>                ui = <span class="hljs-string">&#x27;@&#x27;</span><br>            &#125; <span class="hljs-keyword">else</span>&#123;<br>                ui = <span class="hljs-string">&#x27;*&#x27;</span><br>            &#125;<br>            ShowUI(s.pos[i].X, s.pos[i].Y, ui)<br>        &#125;<br><span class="hljs-comment">// 重新绘制图形</span><br>        ShowUI(wx, wy, <span class="hljs-string">&#x27; &#x27;</span>)<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>这里要先更新蛇尾再更新蛇头，否则会导致异形蛇的产生。再更新完蛇的位置坐标后，会重新绘制蛇形。</p>
+<p><strong>（七）设计主程序</strong></p>
+<p>  待所有的工具模块设计好后，我们就可以设计主程序的流程了。首先，我们初始化地图，然后有了地图，就利用随机种子生成食物，这一点我们在设计食物随机生成器提到过，还需要加入混淆种子来赋予随机性。之后，我们需要隐藏命令行光标，减小对游戏体验的影响，具体的，需要利用Clib包内的HideCursor函数。最后，就是对蛇的设计，首先我们初始化蛇，然后再将蛇置入游戏中。具体代码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 设置一个随机种子，用作混淆</span><br>    rand.Seed(time.Now().UnixNano())<br>    <span class="hljs-comment">// 隐藏光标</span><br>    Clib.HideCursor()<br>    <span class="hljs-comment">// 初始化地图</span><br>    MapInit()<br>    <span class="hljs-comment">// 生成随机食物</span><br>    RandomFood()<br>    <span class="hljs-comment">// 绘制食物</span><br>    <span class="hljs-comment">//ShowUI(food.X, food.Y, &#x27;s&#x27;)</span><br><br>    <span class="hljs-keyword">var</span> s Snake<br>    s.SnakeInit()<br><br>    s.PlayGame()<br>&#125;<br><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p><strong>三.项目总结</strong></p>
+<p>  本项目已上传至Github，欢迎体验与交流。</p>
+<p>地址是：<a target="_blank" rel="noopener" href="https://github.com/huansong-dev/GluttonousSnake-Go">https://github.com/huansong-dev/GluttonousSnake-Go</a></p>
+<p>以上就是本项目的全部后台设计。在未来，我们还可以为游戏加入更多模式，或增加难度，例如增加障碍、不断加快速度等等。</p>
+<p>面向业务、面向需求，不断打磨、不断优化是每一个设计者都需要具有的能力。作为一名优秀的coder，需要匠心独运。</p>
+<p><strong>四.参考文献</strong></p>
+<p>[1] 【六星教育】G0语言综合实战贪吃蛇项目开发教学[EB/OL].[2021-04-27].<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tA411V7aH?p=4">https://www.bilibili.com/video/BV1tA411V7aH?p=4</a></p>
+<p>[2]Golang实现贪吃蛇[EB/OL].[2018-08-12]. <a target="_blank" rel="noopener" href="http://t.csdn.cn/XLYO3">http://t.csdn.cn/XLYO3</a></p>
+<p>[3] Go语言文档[EB/OL].[2022-02-26]. <a target="_blank" rel="noopener" href="https://go.dev/doc/">https://go.dev/doc/</a></p>
+<p>[TOC]</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Go-Project/">Go Project</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Go/">Go</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">waitingFor</a> <br>
+                <strong>本文链接: </strong><a href="http://example.com/2022/02/28/Project/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%90%83%E8%9B%87/">http://example.com/2022/02/28/Project/Go%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E8%B4%AA%E5%90%83%E8%9B%87/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+                   
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/01/ACDaily/ACDaily-1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ACDaily 1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/16/Examples/%E4%BF%A1%E5%A5%A5%E4%BC%A0%E5%A5%87%E2%80%94%E2%80%94%E6%9D%9C%E7%91%9C%E7%9A%93/">
+                        <span class="hidden-mobile">信奥传奇——杜瑜皓</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"1UYsABHdiuhPew7DyayMy0MN-MdYXbMMI","appKey":"3WTCvdyigvgo4b4mooFzutuE","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://1uysabhd.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     &copy; <a href="https://github.com/huansong-dev" target="_blank" rel="nofollow noopener"><span>waitingFor</span></a> 2021-2022 <br> Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('07/12/2021 0:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已各种夹缝中安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

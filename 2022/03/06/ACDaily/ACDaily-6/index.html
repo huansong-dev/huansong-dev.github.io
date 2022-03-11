@@ -1,0 +1,688 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/base/kid.png">
+  <link rel="icon" href="/img/base/kid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Life is a beautiful story">
+  <meta name="author" content="waitingFor">
+  <meta name="keywords" content="">
+  <meta name="description" content="背包问题练习与LeetCode初体验这两天做题效率低了一些，不过背包是一块难啃的骨头，要集中一些。 波动数列观察这个数列： 1 3 0 2 -1 1 -2 … 这个数列中后一项总是比前一项增加2或者减少3，且每一项都为整数。 栋栋对这种数列很好奇，他想知道长度为 n 和为 s 而且后一项总是比前一项增加 a 或者减少 b 的整数数列可能有多少种呢？ 输入格式共一行，包含四个整数 n,s,a,b，含">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACDaily 6">
+<meta property="og:url" content="http://example.com/2022/03/06/ACDaily/ACDaily-6/index.html">
+<meta property="og:site_name" content="waitingFor&#39;s blog">
+<meta property="og:description" content="背包问题练习与LeetCode初体验这两天做题效率低了一些，不过背包是一块难啃的骨头，要集中一些。 波动数列观察这个数列： 1 3 0 2 -1 1 -2 … 这个数列中后一项总是比前一项增加2或者减少3，且每一项都为整数。 栋栋对这种数列很好奇，他想知道长度为 n 和为 s 而且后一项总是比前一项增加 a 或者减少 b 的整数数列可能有多少种呢？ 输入格式共一行，包含四个整数 n,s,a,b，含">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-06T14:35:27.000Z">
+<meta property="article:modified_time" content="2022-03-06T17:02:27.111Z">
+<meta property="article:author" content="waitingFor">
+<meta property="article:tag" content="DP">
+<meta property="article:tag" content="背包问题">
+<meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="字符串拆分与拼接">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>ACDaily 6 - waitingFor&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/atom-one-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="/css/mac.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/base/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hansen&#39;s Space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/base/jue.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ACDaily 6">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      waitingFor
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-03-06 22:35" pubdate>
+        2022年3月6日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ACDaily 6</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：4 天前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="背包问题练习与LeetCode初体验"><a href="#背包问题练习与LeetCode初体验" class="headerlink" title="背包问题练习与LeetCode初体验"></a>背包问题练习与LeetCode初体验</h1><p>这两天做题效率低了一些，不过背包是一块难啃的骨头，要集中一些。</p>
+<h2 id="波动数列"><a href="#波动数列" class="headerlink" title="波动数列"></a>波动数列</h2><p>观察这个数列：</p>
+<p>1 3 0 2 -1 1 -2 …</p>
+<p>这个数列中后一项总是比前一项增加2或者减少3，且每一项都为整数。</p>
+<p>栋栋对这种数列很好奇，他想知道长度为 n 和为 s 而且后一项总是比前一项增加 a 或者减少 b 的整数数列可能有多少种呢？</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>共一行，包含四个整数 n,s,a,b，含义如前面所述。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>共一行，包含一个整数，表示满足条件的方案数。</p>
+<p>由于这个数很大，请输出方案数除以 100000007 的余数。</p>
+<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n≤1000,<br>−109≤s≤109,<br>1≤a,b≤106</p>
+<h4 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h4><p>4 10 2 3</p>
+<h4 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h4><p>2</p>
+<h4 id="样例解释"><a href="#样例解释" class="headerlink" title="样例解释"></a>样例解释</h4><p>两个满足条件的数列分别是2 4 1 3和7 4 1 -2。</p>
+<h4 id="题解："><a href="#题解：" class="headerlink" title="题解："></a>题解：</h4><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1010</span>, MOD = <span class="hljs-number">100000007</span>;<br><span class="hljs-keyword">int</span> f[N][N];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">get_mod</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> (a%b + b) % b;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> n, s, a, b;<br>    cin &gt;&gt; n &gt;&gt; s &gt;&gt; a &gt;&gt; b;<br>    <br>    f[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n<span class="hljs-number">-1</span>; i++)<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++)<br>        &#123;<br>            f[i][j] = (f[i<span class="hljs-number">-1</span>][<span class="hljs-built_in">get_mod</span>(j-a*(n-i), n)]+f[i<span class="hljs-number">-1</span>][<span class="hljs-built_in">get_mod</span>(j + b*(n-i), n)]) % MOD;<br>        &#125;<br>        <br>    cout &lt;&lt; f[n<span class="hljs-number">-1</span>][<span class="hljs-built_in">get_mod</span>(s, n)] &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>按照我们在<a target="_blank" rel="noopener" href="https://www.waitingfor.cn/2022/03/05/ACDaily/ACDaily-5/">ACDaily 5</a>提到的标准流程，先做好状态表示，再做好状态计算。</p>
+<p>根据题意我们要求的是所有方案数，因此状态数组内存的应该是方案数。那么我们要给出的，是哪一类方案数呢。根据题意，我们可以设置一个起点数x，之后的每个数由于只比前一个数大a或少b，我们把它们记作di，表示相对于第i-1项的变化量。</p>
+<p>在做了以上数学转换后，我们就可以得到一个等值的表达式。再来看看目的：n个数的序列之和应该是n的倍数，因此，我们可以将问题转化为：序列和s与di组合mod n达到同余要求的所有方案。</p>
+<p>所以我们可以用<code>f[i][j]</code>表示前i个d(d1~dn-1)的所有组合同余j的方案数。</p>
+<p>接着，我们根据化整为零的思想按照序列最后一项的区别对集合进行划分。观察到最后一项仅有<code>(n-i)*a</code>和<code>-(n-1)*b</code>两种可能，于是我们将这两种情况的方案数相加就可以得到当下情况的方案数。</p>
+<p>再经过状态的合并来获得目标方案。</p>
+<ul>
+<li>几点要明确的</li>
+</ul>
+<ol>
+<li>C++中负数模正数是可以得到负余数的，例如<code>a &lt; 0, b &gt; 0</code> <code>a%b</code>就属于<code>-(b-1) ~ (b-1)</code>，因此在本题中设计了函数将负余数转化为正余数。</li>
+<li>一切从实际出发，考虑各特征的合理范围</li>
+<li>特别注意初始化起点的值</li>
+<li>由于MOD为9位数，所以对于多数相加取模问题，我们需要一步一步地先做加法再取模，也就是加一个数，取一次模，再加一个数，再取一次模，直到把所有数加完。</li>
+</ol>
+<h2 id="LeetCode初体验"><a href="#LeetCode初体验" class="headerlink" title="LeetCode初体验"></a>LeetCode初体验</h2><p>第一次参加LeetCode周赛，有许多不适应的地方，不过参加过了就有了一些了解与体会。</p>
+<ol>
+<li>LeetCode系统会默认添加所有C++头文件，这也是很多人喜欢用C++打比赛的原因，因为STL的数据结构集成性非常好。</li>
+<li>在代码区，系统会为你提供一个Solution类，并且给出解答该题的函数设计框架，算是一种提示吧。如果需要全局变量，我们就需要设计静态成员，然后初始化；一般变量则可以直接在函数内定义。其实，规范一些，我们的所有变量都应该在数据成员区进行定义。</li>
+<li>要多打打这些有时限的算法比赛，激活自己的状态，同时也能意识到自己在哪些地方有不足，是一种很好的反馈。</li>
+<li>这次只AC了一道题，与大佬们还有很大差距，冲冲冲。</li>
+</ol>
+<h2 id="Excel表中某个范围内的单元格"><a href="#Excel表中某个范围内的单元格" class="headerlink" title="Excel表中某个范围内的单元格"></a>Excel表中某个范围内的单元格</h2><p>概述：给定一个Excel表格区间<code>letter1 i:letter2 j</code>并且<code>&#39;A&#39;&lt;= letter1 &lt;= letter2 &lt;= &#39;Z&#39;, i &lt;= j</code>，要求输出这个范围的所有格子，假如给定的区间为<code>K1:L2</code>,那么我们就应该输出向量<code>[&quot;K1&quot;, &quot;K2&quot;, &quot;L1&quot;, &quot;L2&quot;]</code>，可以看到，在满足条件的区域遍历的顺序为由上而下，由左而右。</p>
+<p>原题链接可以参考<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cells-in-a-range-on-an-excel-sheet/">LeetCode.6016</a></p>
+<h3 id="原始人做法"><a href="#原始人做法" class="headerlink" title="原始人做法"></a>原始人做法</h3><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">cellsInRange</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        vector&lt;string&gt; list;<br>        <span class="hljs-keyword">char</span> a[<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">char</span> b[<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">char</span> letter[<span class="hljs-number">26</span>];<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">26</span>; i++)<br>            letter[i] = i+<span class="hljs-number">65</span>;<br>        <br>        <span class="hljs-keyword">char</span> *str = (<span class="hljs-keyword">char</span>*)s.<span class="hljs-built_in">data</span>();<br>        <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *d = <span class="hljs-string">&quot;:&quot;</span>;<br>        <span class="hljs-keyword">char</span> *p;<br>        p = <span class="hljs-built_in">strtok</span>(str, d);<br>        a[<span class="hljs-number">0</span>] = p[<span class="hljs-number">0</span>];<br>        b[<span class="hljs-number">0</span>] = p[<span class="hljs-number">1</span>];<br>        p = <span class="hljs-built_in">strtok</span>(<span class="hljs-literal">nullptr</span>, d);<br>        a[<span class="hljs-number">1</span>] = p[<span class="hljs-number">0</span>];<br>        b[<span class="hljs-number">1</span>] = p[<span class="hljs-number">1</span>];<br>        <br>        <span class="hljs-keyword">int</span> num1 = b[<span class="hljs-number">0</span>]-<span class="hljs-string">&#x27;0&#x27;</span>;<br>        <span class="hljs-keyword">int</span> num2 = b[<span class="hljs-number">1</span>]-<span class="hljs-string">&#x27;0&#x27;</span>;<br>        <span class="hljs-keyword">int</span> letter1 = a[<span class="hljs-number">0</span>]<span class="hljs-number">-65</span>;<br>        <span class="hljs-keyword">int</span> letter2 = a[<span class="hljs-number">1</span>]<span class="hljs-number">-65</span>;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = letter1; i &lt;= letter2; i++)<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = num1; j &lt;= num2; j++)<br>            &#123;<br>                <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> num = j+<span class="hljs-number">48</span>;<br>                <span class="hljs-keyword">char</span> p[<span class="hljs-number">80</span>];<br>                p[<span class="hljs-number">0</span>] = letter[i];<br>                p[<span class="hljs-number">1</span>] = num;<br>                list.<span class="hljs-built_in">insert</span>(list.<span class="hljs-built_in">end</span>(), p);<br>            &#125;<br>        <br>        <span class="hljs-keyword">return</span> list;<br>    &#125;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<h3 id="STL加持做法"><a href="#STL加持做法" class="headerlink" title="STL加持做法"></a>STL加持做法</h3><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;string&gt; <span class="hljs-title">cellsInRange</span><span class="hljs-params">(string s)</span> </span>&#123;<br>        <span class="hljs-keyword">char</span> a = s[<span class="hljs-number">0</span>], b = s[<span class="hljs-number">3</span>];<br>        <span class="hljs-keyword">int</span> p = s[<span class="hljs-number">1</span>] - <span class="hljs-string">&#x27;0&#x27;</span>, q = s[<span class="hljs-number">4</span>] - <span class="hljs-string">&#x27;0&#x27;</span>;<br>        vector&lt;string&gt; ans;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c = a; c &lt;= b; ++c) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> d = p; d &lt;= q; ++d) &#123;<br>                string t&#123;c, (<span class="hljs-keyword">char</span>)(d + <span class="hljs-string">&#x27;0&#x27;</span>)&#125;;<br>                ans.<span class="hljs-built_in">push_back</span>(t);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>STL作用太大了，需要好好学学。</p>
+<p>其实STL对于我们学习数据结构也是很有帮助的，以STL数据结构为参照，对应其中的功能来实现我们自己的类应该是一种更好的学法，毕竟我们学习数据结构不是为了在使用时造轮子而是更好地去驾驭已经比较完善的库中的它们，毕竟STL内的数据结构实现比我们要完善的多吧doge。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/ACDaily/">ACDaily</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/DP/">DP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">背包问题</a>
+                    
+                      <a class="hover-with-bg" href="/tags/LeetCode/">LeetCode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%86%E5%88%86%E4%B8%8E%E6%8B%BC%E6%8E%A5/">字符串拆分与拼接</a>
+                    
+                  </div>
+                
+              </div>
+<!--                -->
+<!--                 <p class="note note-warning"> -->
+<!--                    -->
+<!--                     本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！ -->
+<!--                    -->
+<!--                 </p> -->
+<!--                -->
+              <p class="note note-warning">
+                <strong>本文作者: </strong><a href="/">waitingFor</a> <br>
+                <strong>本文链接: </strong><a href="http://example.com/2022/03/06/ACDaily/ACDaily-6/">http://example.com/2022/03/06/ACDaily/ACDaily-6/</a> <br>
+                <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                   </p>
+                   
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/09/ACDaily/ACDaily-7/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ACDaily 7</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/05/ACDaily/ACDaily-5/">
+                        <span class="hidden-mobile">ACDaily 5</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"1UYsABHdiuhPew7DyayMy0MN-MdYXbMMI","appKey":"3WTCvdyigvgo4b4mooFzutuE","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://1uysabhd.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     &copy; <a href="https://github.com/huansong-dev" target="_blank" rel="nofollow noopener"><span>waitingFor</span></a> 2021-2022 <br> Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    <!--《添加网站运行时间 -->
+<br/>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+var now = new Date(); 
+
+function createtime() {
+    //此处修改你的建站时间或者网站上线时间
+    var grt = new Date('07/12/2021 0:00:00');
+    now.setTime(now.getTime() + 250);
+    days = (now - grt) / 1000 / 60 / 60 / 24;
+
+    dnum = Math.floor(days);
+    hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+        hnum = "0" + hnum;
+    }
+    minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+        mnum = "0" + mnum;
+    }
+    seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+        snum = "0" + snum;
+    }
+    document.getElementById("timeDate").innerHTML = " 本站已各种夹缝中安全运行 " + dnum + " 天 ";
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+}
+setInterval("createtime()", 250);
+</script>
+
+<!-- 添加网站运行时间》-->
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
